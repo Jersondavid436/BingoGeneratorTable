@@ -1,5 +1,5 @@
 version_python3 = 3.11.2
-version_pip3 = 23.0.1
+version_pip3 = 23.0
 
 chardet==5.2.0
 numpy==2.0.1
