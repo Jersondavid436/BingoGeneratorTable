@@ -26,7 +26,6 @@ class GeneradorBingoApp:
 
         self.crear_interfaz_principal()
 
-    
     def crear_interfaz_principal(self):
         label_bienvenida = tk.Label(
             self.ventana, 
@@ -59,7 +58,6 @@ class GeneradorBingoApp:
         self.ancho = 850
         self.alto = 650
         
-
         self.opciones = ["tabla de 4", "tabla de 6", "tablas llenas"]
         self.reportes = [
             "plantilla4.pdf", 
