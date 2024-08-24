@@ -55,6 +55,7 @@ class GeneradorBingoApp:
 
         # Crear la nueva ventana
         self.ventana2 = tk.Tk()
+        self.ventana2.title("Generador De Bingo")
         self.ancho = 850
         self.alto = 650
         
