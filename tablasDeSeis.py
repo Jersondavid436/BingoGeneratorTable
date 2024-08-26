@@ -75,10 +75,3 @@ class tablaDeSeis(Plantilla):
 
         print(f"El archivo {self.pdf_file} ha sido creado.")
 
-if __name__ == "__main__":
-    tb4=tablaDeSeis("parao.pdf", 5, "","","","","00.50")
-    tb4.organizado_por = "jerson tacuri Orellana"
-    tb4.direccion = "juan jose aviles morla, sector las trancas y si te invito una copa y me hacerco a tu boca"
-    tb4.nota = "Llevar plata para la comida"
-    tb4.fecha = "22 de noviembre del 2024"
-

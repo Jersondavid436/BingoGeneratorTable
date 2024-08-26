@@ -106,4 +106,3 @@ class tablasDeCuatro(Plantilla):
         
         print(f"El archivo {self.pdf_file} ha sido creado.")
 
-tablasDeCuatro("parao.pdf", 5, "","","","","00.50")

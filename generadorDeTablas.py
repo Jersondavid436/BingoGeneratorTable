@@ -1,9 +1,8 @@
 from datetime import datetime as dt
 import numpy as np
-""""Crea un algoritmo siga los siguientes requerimientos
-- Crea una opcion de cuantas tablas quiero en mi tabla bingo ejemplo 1, 2, 4, 6 tablas.
-- los numeros deben seguir la secuencia comun de las tablas de 1 a 15 de 16 a 30  hasta el 75 etc. +
-- Almacena los numeros en un array y muestralos en la consola.+
+""" Creacion del generador de Bingo
+este archivo contiene la generacion de un array numpy de 2 dimenciones con el reducir la velocidad de creacion
+de los numeros de las tablas
 """
 
 class Bingo():

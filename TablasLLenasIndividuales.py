@@ -70,4 +70,3 @@ def creacion_tablas(num):
 
     print(f"El archivo {pdf_file} ha sido creado.")
 
-creacion_tablas(5)

@@ -4,21 +4,23 @@ from reportlab.platypus import Table, Spacer, PageBreak, Paragraph
 from generadorTablasIguales import tablasIguales
 from plantillaClases import Plantilla
 
-# Agrega el Encabezado bingo transformando el array numpy a una simple lista luego lo transforma en una tabla
+"""Se hereda de la plantilla el constructor y sus propiedades"""
 class tablasLlenas(Plantilla):
     def __init__(self, pdf_file, num, organizado_por, direccion, fecha, nota, costo):
         super().__init__(pdf_file, organizado_por, direccion, fecha, nota, costo)
         self.tabla_Llena = tablasIguales()
         self.creacion_tablas(num)
 
-    def tabla_resultado(self, i):
+    #Se simplifica el llamado del metodo tabla_llena del generador de tablas
+    def tabla_resultado(self, i): 
         i.tabla_llena()
         return i.tablaLlena
 
     def creacion_tablas(self, num):
-        self.aplicacion_estilos()
-        self.creacion_pdf()
-
+        self.aplicacion_estilos() #Llamado de estilos 
+        self.creacion_pdf() #creacion del archivo pdf 
+        
+        #Asignacion de cada juego de la tabla 
         for i in range(num):
             self.tabla_Llena.tabla_principal()
             tb1= self.tabla_resultado(self.tabla_Llena)
@@ -30,15 +32,17 @@ class tablasLlenas(Plantilla):
             long = len(self.direccion);a = 25; b = 100
             if long>=60 and self.direccion[60] != "\n":self.direccion=self.direccion[:60]+"\n\n"+self.direccion[60:]
             if long>60: a=50;b=125
-
+            
+            #creacion del encabezado de informacion de la tabla
             data_p = [[f"Organizado por: {self.organizado_por}"],
                     [f"Direccion: {self.direccion}"],
                     [f"Nota: {self.nota}"],
                     [f"Fecha: {self.fecha}"]]
             
+            #creacion de valor del encabezado de informacion de la tabla
             data_v = [[f"Valor:\n\n\n {self.costo}"]]
             
-            #ajuste del tamaño y dimensiones de la tabla info
+            #ajuste del tamaño y dimensiones de encabezado
             data_p = Table(data_p, colWidths=[490],rowHeights=[25, a, 25, 25])
             data_v = Table(data_v, colWidths=[80], rowHeights=[b])
 
@@ -63,7 +67,8 @@ class tablasLlenas(Plantilla):
             # Crear una tabla contenedora para alinear las tablas lado a lado con espaciado
             grupo_tablas = Table([[data1, Spacer(1, 0), data2], [data3, Spacer(1, 0), data4],[data5, Spacer(1, 0), data6]], colWidths=[300, 38, 210])
             grupo_datos = Table([[data_p, data_v]])
-            # Crear el estilo del encabezado
+
+            # Crear el estilo del encabezado bingo
             styles = getSampleStyleSheet()
             header_style = ParagraphStyle(name='CenteredHeader',
                                         parent=styles['Heading1'],
@@ -76,8 +81,3 @@ class tablasLlenas(Plantilla):
 
         # Crear el documento PDF
         self.document.build(self.content)
-
-
-        print(f"El archivo {self.pdf_file} ha sido creado.")
-
-tablasLlenas("jerson.pdf",7,"","","","","")

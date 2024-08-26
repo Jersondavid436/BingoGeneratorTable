@@ -1,7 +1,10 @@
-import tkinter as tk
 from tkinter import ttk
+import tkinter as tk
 from PIL import Image, ImageTk
 from pdf2image import convert_from_path
+from pathlib import Path
+import os
+
 from tablasDeSeis import tablaDeSeis
 from tablaDeCuatro import tablasDeCuatro
 from seisTablasLlenas import tablasLlenas
@@ -43,9 +46,13 @@ class GeneradorBingoApp:
         self.ventana.mainloop()
 
     def creacion_plantillas(self):
-        tablasDeCuatro("plantilla4.pdf", 1,"","","","","")
-        tablaDeSeis("plantilla6.pdf", 1, "","","", "","")
-        tablasLlenas("plantillaLlena.pdf", 1, "", "", "", "", "")
+        self.carpeta=Path("plantilla_tablas")
+        self.carpeta.mkdir(exist_ok=True)
+        self.ruta=Path.cwd()
+        tablasDeCuatro(f"{self.ruta}/{self.carpeta}/plantilla4.pdf", 1,"","","","","")
+        tablaDeSeis(f"{self.ruta}/{self.carpeta}/plantilla6.pdf", 1, "","","", "","")
+        tablasLlenas(f"{self.ruta}/{self.carpeta}/plantillaLlena.pdf", 1, "", "", "", "", "")
+
 
     def nueva_ventana(self):
         self.creacion_plantillas()
@@ -60,9 +67,9 @@ class GeneradorBingoApp:
         
         self.opciones = ["tabla de 4", "tabla de 6", "tablas llenas"]
         self.reportes = [
-            "plantilla4.pdf", 
-            "plantilla6.pdf",
-            "plantillaLlena.pdf"
+            f"/{self.ruta}/{self.carpeta}/plantilla4.pdf", 
+            f"/{self.ruta}/{self.carpeta}/plantilla6.pdf",
+            f"/{self.ruta}/{self.carpeta}/plantillaLlena.pdf"
         ]
 
         self.ancho_pantalla = self.ventana2.winfo_screenwidth()
@@ -175,23 +182,27 @@ class GeneradorBingoApp:
 
     def generar_pdf(self):
         try:
-            if self.opcion_seleccionada.get() == self.opciones[0]:
-                tablasDeCuatro(self.entrada7.get()+".pdf", int(self.entrada6.get()), 
-                               self.entrada1.get(), self.entrada2.get(), self.entrada3.get(), 
-                               self.entrada4.get(), self.entrada5.get())
-                print("se a creado correctamente")
-            elif self.opcion_seleccionada.get() == self.opciones[1]: 
-                tablaDeSeis(self.entrada7.get()+".pdf", int(self.entrada6.get()), 
-                               self.entrada1.get(), self.entrada2.get(), self.entrada3.get(), 
-                               self.entrada4.get(), self.entrada5.get())
-            elif self.opcion_seleccionada.get() == self.opciones[2]: 
-                tablasLlenas(self.entrada7.get()+".pdf", int(self.entrada6.get()), 
-                               self.entrada1.get(), self.entrada2.get(), self.entrada3.get(), 
-                               self.entrada4.get(), self.entrada5.get())
+            if len(self.entrada7.get()) >= 0:
+                if len(self.entrada7.get()) < 5:
+                    label7 = tk.Label(self.frame_interno, text="Ingrese El Nombre Del Archivo Que Tenga Minimo 5 Letras")
+                    label7.place(x=40, y=470)    
+                else:
+                    if self.opcion_seleccionada.get() == self.opciones[0]:
+                        tablasDeCuatro(self.entrada7.get()+".pdf", int(self.entrada6.get()), 
+                                    self.entrada1.get(), self.entrada2.get(), self.entrada4.get(), 
+                                    self.entrada3.get(), self.entrada5.get())
+                    elif self.opcion_seleccionada.get() == self.opciones[1]: 
+                        tablaDeSeis(self.entrada7.get()+".pdf", int(self.entrada6.get()), 
+                                    self.entrada1.get(), self.entrada2.get(), self.entrada4.get(), 
+                                    self.entrada3.get(), self.entrada5.get())                
+                    elif self.opcion_seleccionada.get() == self.opciones[2]: 
+                        tablasLlenas(self.entrada7.get()+".pdf", int(self.entrada6.get()), 
+                                    self.entrada1.get(), self.entrada2.get(), self.entrada4.get(), 
+                                    self.entrada3.get(), self.entrada5.get())                
+                    
+                    label7 = tk.Label(self.frame_interno, text="Se ha generado el pdf")
+                    label7.place(x=40, y=470)
             
-            label7 = tk.Label(self.frame_interno, text="Se ha generado el pdf")
-            label7.place(x=40, y=470)
-        
         except Exception as e:
             print(f"Error: {e}")
 
