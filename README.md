@@ -28,6 +28,11 @@ una vez de lo hayamos hecho nos dara un pdf con el numero de tablas especifico q
 
 ![Imagen del Generador Inicio](./img/img5.png)
 
+
+
+![Imagen del Generador Inicio](./img/img6.png)
+
+
 ![Imagen del Generador Inicio](./img/img1.png)
 
 
