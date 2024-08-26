@@ -5,3 +5,5 @@ es indispensable instalar todas las librerias que se encuentran en el archivo li
 
 para ejecutarlo hay que correr el archivo interfaz_grafica.py el cual iniciara con el programa en una interfaz
 de tkinter.
+
+![Imagen del Generador Inicio](./img/img2.png)
